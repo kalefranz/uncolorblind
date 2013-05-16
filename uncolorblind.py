@@ -14,10 +14,9 @@ color_list, rgb_array = create_color_references()
 
 
 def get_color(r, g, b):
-    r_diff = np.absolute(rgb_array[:, 0] - int(r))
-    g_diff = np.absolute(rgb_array[:, 1] - int(g))
-    b_diff = np.absolute(rgb_array[:, 2] - int(b))
-    min_idx = np.argmin(r_diff + g_diff + b_diff)
+    point = np.array([int(r), int(g), int(b)])
+    distances = ((rgb_array-point)**2).sum(axis=1)
+    min_idx = distances.argmin()
     return color_list[min_idx]
 
 
@@ -28,7 +27,7 @@ def capture_screen_area(x, y, width, height):
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.setWindowTitle('colorBlind')
+        self.setWindowTitle('uncolorblind')
         self.create_main_frame()
         self.start_timer()
 
@@ -40,7 +39,7 @@ class MainWindow(QMainWindow):
         mainLayout.addWidget(self.screen_image)
 
         rgb_grid = QGridLayout()
-        self.color_label = QLabel("Black : Black")
+        self.color_label = QLabel(" ")
         self.r_dec_label = QLabel("0")
         self.g_dec_label = QLabel("0")
         self.b_dec_label = QLabel("0")
@@ -93,7 +92,7 @@ class MainWindow(QMainWindow):
         self.b_dec_label.setText(str(b))
 
         color = get_color(r, g, b)
-        self.color_label.setText("{0} : {1}".format(color['group'], color['name']))
+        self.color_label.setText("<b>{1}</b><br>{0}".format(color['group'], color['name']))
         self.rgb_hex_label.setText("#{}".format(rgb_to_hex(r, g, b)))
 
 

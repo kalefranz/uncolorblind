@@ -1,8 +1,12 @@
 import re
 import json
+import os
+import sys
 import numpy as np
 
 colors_json_file = "colors.json"
+
+base_path = os.path.dirname(__file__)
 
 
 def hex_to_rgb(value):
@@ -15,7 +19,10 @@ def rgb_to_hex(r, g, b):
 
 
 def create_color_references():
-    with open(colors_json_file, "r") as f:
+    if not os.path.exists(os.path.join(base_path, colors_json_file)):
+        save_as_json(os.path.join(base_path, colors_json_file), convert_raw())
+
+    with open(os.path.join(base_path, colors_json_file), "r") as f:
         color_list = json.loads(f.read())
         rgb_array = np.empty([len(color_list), 3], dtype=int)
         for q, color in enumerate(color_list):
@@ -25,6 +32,7 @@ def create_color_references():
             rgb_array[q, 2] = b
     return color_list, rgb_array
 
+
 def convert_raw():
     """
     Creates a python list of dictionaries
@@ -32,7 +40,7 @@ def convert_raw():
     """
     pattern = re.compile(r"(?<=\w)([A-Z])")  # used to add space before capital letters: LightBlue -> Light Blue
     prelim_colors = dict()
-    with open("raw_x11.txt", "r") as f:
+    with open(os.path.join(base_path, "raw_x11.txt"), "r") as f:
         for line in f:
             line = line.split()
             rgb = line[2].strip("#")
@@ -41,7 +49,7 @@ def convert_raw():
 
     prelim_groups = dict()
     current_group = None
-    with open("raw_groups.txt", "r") as f:
+    with open(os.path.join(base_path, "raw_groups.txt"), "r") as f:
         for line in f:
             if line[0] == "*":
                 current_group = line.split()[0].strip("*")
@@ -70,4 +78,4 @@ def save_as_json(file_path, python_object):
 
 
 if __name__ == "__main__":
-    save_as_json("../colors.json", convert_raw())
+    create_color_references()
