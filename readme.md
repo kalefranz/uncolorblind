@@ -5,7 +5,8 @@ Just a little app especially designed for people, like me, who are color blind. 
 functionality as [DigitalColor Meter](http://en.wikipedia.org/wiki/DigitalColor_Meter) on OS X.  With one twist.
 It will tell you the *name* of the color along with the RGB values. Given the RGB values of the pixel under the
 mouse pointer, it does a simple regression to find the closest match to the
-[X11 color names](http://en.wikipedia.org/wiki/Web_colors).
+[X11 color names](http://en.wikipedia.org/wiki/Web_colors).  And it gives both the X11 color name and the "group name"
+as categorized on the [wikipedia page](http://en.wikipedia.org/wiki/Web_colors).
 
 For color blind people, having the actual names of the colors is immensely helpful.  And if you're not color blind,
 I'm guessing this utility might still be useful.  Even though I *am* color blind, I'm pretty decent at telling people
