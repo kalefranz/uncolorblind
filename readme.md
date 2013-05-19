@@ -1,3 +1,5 @@
+![screen shot](https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png)
+
 uncolorblind app
 ================
 
