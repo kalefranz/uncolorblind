@@ -1,6 +1,7 @@
 import unittest
+import os
 import numpy as np
-from util.color_util import hex_to_rgb, rgb_to_hex, create_color_references, get_color
+from util.color_util import hex_to_rgb, rgb_to_hex, create_color_references, get_color, base_path, colors_json_file
 
 num_X11_colors = 140
 white_hex = "FFFFFF"
@@ -10,6 +11,10 @@ black_dec = (0, 0, 0)
 
 tomato_hex = "FA6940"
 teal_hex = "087585"
+
+colors_file = os.path.join(base_path, colors_json_file)
+if os.path.exists(colors_file):
+    os.remove(colors_file)
 
 
 class TestColorUtil(unittest.TestCase):

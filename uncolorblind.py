@@ -28,31 +28,61 @@ class MainWindow(QMainWindow):
         mainLayout = QHBoxLayout()
         mainLayout.addWidget(self.screen_image)
 
-        self.color_label = QLabel("<b>Black</b><br>Gray Scale")
+        # variable display fields
+        self.color_label_primary = QLabel("<b>Black</b>")
+        self.color_label_group = QLabel("Gray Scale")
         self.rgb_dec_label = QLabel(format_rgb_string(0, 0, 0))
         self.rgb_hex_label = QLabel("#0000000")
         self.mouse_coords_label = QLabel("0 x 0")
 
-        right_layout = QVBoxLayout()
-        right_layout.addWidget(self.color_label)
+        # font setup
+        font_10pt = QLabel().font()
+        font_10pt.setPointSize(10)
+        font_12pt = QLabel().font()
+        font_12pt.setPointSize(12)
+        font_14pt = QLabel().font()
+        font_14pt.setPointSize(14)
+        font_14pt.setBold(True)
+        self.color_label_primary.setFont(font_14pt)
+        self.color_label_group.setFont(font_12pt)
+
+        # information box layout
+        info_box_layout = QVBoxLayout()
+        info_box_layout.setSpacing(0)
+        info_box_layout.setMargin(0)
+        info_box_layout.setContentsMargins(0, 0, 0, 0)
+        color_name_layout = QHBoxLayout()
+        color_name_layout.addWidget(self.color_label_primary, 0, Qt.AlignLeft)
+        color_name_layout.addWidget(self.color_label_group, 0, Qt.AlignRight)
+        info_box_layout.addLayout(color_name_layout)
+        info_box_layout.itemAt(info_box_layout.count() - 1).layout().setContentsMargins(0, 0, 0, 15)
         rgb_dec_layout = QHBoxLayout()
         rgb_dec_layout.addWidget(QLabel("<b>RGB:  </b>"))
         rgb_dec_layout.addWidget(self.rgb_dec_label, Qt.AlignLeft)
-        right_layout.addLayout(rgb_dec_layout)
+        info_box_layout.addLayout(rgb_dec_layout)
+        info_box_layout.addWidget(QLabel('<font color="darkGray"><b><i>C</i></b> to copy to clipboard</font>'),
+                                  0, Qt.AlignRight)
+        info_box_layout.itemAt(info_box_layout.count() - 1).widget().setFont(font_10pt)
         rgb_hex_layout = QHBoxLayout()
         rgb_hex_layout.addWidget(QLabel("<b>Hex:  </b>"))
         rgb_hex_layout.addWidget(self.rgb_hex_label, Qt.AlignLeft)
-        right_layout.addLayout(rgb_hex_layout)
+        info_box_layout.addLayout(rgb_hex_layout)
+        info_box_layout.addWidget(QLabel('<font color="darkGray"><b><i>Enter</i></b> to copy to clipboard</font>'),
+                                  0, Qt.AlignRight)
+        info_box_layout.itemAt(info_box_layout.count() - 1).widget().setFont(font_10pt)
         mouse_coords_layout = QHBoxLayout()
-        mouse_coords_layout.addWidget(QLabel("<b>mouse coords: </b>"))
+        mouse_coords_layout.addWidget(QLabel("<b>coords: </b>"))
         mouse_coords_layout.addWidget(self.mouse_coords_label, Qt.AlignLeft)
-        right_layout.addLayout(mouse_coords_layout)
-        mainLayout.addLayout(right_layout)
+        info_box_layout.addLayout(mouse_coords_layout)
+        info_box_layout.addWidget(QLabel('<font color="darkGray"><b><i>Space Bar</i></b> to freeze</font>'),
+                                  0, Qt.AlignRight)
+        info_box_layout.itemAt(info_box_layout.count() - 1).widget().setFont(font_10pt)
+        mainLayout.addLayout(info_box_layout)
 
         self.mainWidget = QWidget()
         self.mainWidget.setLayout(mainLayout)
         self.setCentralWidget(self.mainWidget)
-        self.setFixedWidth(c.window_width)
+        self.setFixedSize(c.window_width, c.window_height)
 
     def init_polling(self):
         self.timer = QTimer()
@@ -100,8 +130,9 @@ class MainWindow(QMainWindow):
         self.rgb_dec_label.setText(format_rgb_string(r, g, b))
 
         color = get_color(r, g, b)
-        self.color_label.setText("<b>{0}</b><br>{1}".format(color['name'], color['group']))
-        self.rgb_hex_label.setText("#{0}".format(rgb_to_hex(r, g, b)))
+        self.color_label_primary.setText(color['name'])
+        self.color_label_group.setText(color['group'])
+        self.rgb_hex_label.setText("#{}".format(rgb_to_hex(r, g, b)))
 
 
 def main():

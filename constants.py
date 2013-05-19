@@ -14,3 +14,4 @@ class Constants(object):
         self.sub_image_anchor_px = self.display_image_pxs / 2 - self.sub_image_pxs / 2
         self.display_image_edge_pxs = self.display_image_pxs - 1
         self.window_width = int(self.display_image_pxs * 2.5)
+        self.window_height = int(self.display_image_pxs + 2 * 12)
