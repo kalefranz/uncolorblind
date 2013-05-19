@@ -1,11 +1,6 @@
 import numpy as np
 from PyQt4.QtCore import QRect
-from PyQt4.QtGui import QApplication, QPixmap, QColor, QCursor, QPainter
-
-
-def capture_cursor_location():
-    pos = QCursor.pos()
-    return pos.x(), pos.y()
+from PyQt4.QtGui import QApplication, QPixmap, QColor, QPainter
 
 
 def capture_screen_area(x, y, width, height):
