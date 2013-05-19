@@ -1,7 +1,6 @@
-<p align="center"><img src="https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png" alt="screen shot" width="399" height="258"></p>
+<div align="center"><img src="https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png" alt="screen shot" width="399" height="258"></div>
 
-uncolorblind app
-================
+## uncolorblind app ##
 
 This is a little app especially designed for people, like me, who are color blind.  It has a lot of the same
 functionality as [DigitalColor Meter](http://en.wikipedia.org/wiki/DigitalColor_Meter) on OS X…with one twist.
