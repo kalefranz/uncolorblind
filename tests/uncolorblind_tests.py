@@ -38,6 +38,15 @@ class TestMainApp(unittest.TestCase):
         match = re.search("#[0-9]{6}", current_clipboard)
         self.assertIsNotNone(match)
 
+    def test_copy_dec_on_C(self):
+        QApplication.clipboard().clear()
+        self.assertEqual("", QApplication.clipboard().text())
+        C_event = QKeyEvent(QEvent.KeyPress, Qt.Key_C, Qt.NoModifier)
+        self.main_window.keyPressEvent(C_event)
+        current_clipboard = QApplication.clipboard().text()
+        match = re.search("[0-9]{1,3},[0-9]{1,3},[0-9]{1,3}", current_clipboard)
+        self.assertIsNotNone(match)
+
     def test_freeze_on_minimize_then_unfreeze_maximize(self):
         self.main_window.hideEvent(QHideEvent.Hide)
         self.assertFalse(self.main_window.timer.isActive())

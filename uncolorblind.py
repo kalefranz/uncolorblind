@@ -103,6 +103,8 @@ class MainWindow(QMainWindow):
         key = QKeyEvent.key()
         if key == Qt.Key_Space:  # space bar
             self.toggle_polling()
+        elif key == Qt.Key_C:
+            self.copy_dec()
         elif key in (Qt.Key_Return, Qt.Key_Enter):  # enter key
             self.copy_hex()
 
@@ -114,6 +116,9 @@ class MainWindow(QMainWindow):
 
     def copy_hex(self):
         QApplication.clipboard().setText(self.rgb_hex_label.text())
+
+    def copy_dec(self):
+        QApplication.clipboard().setText(self.rgb_dec_label.text().replace(" ", ""))
 
     def update_capture(self):
         x, y = capture_cursor_location()

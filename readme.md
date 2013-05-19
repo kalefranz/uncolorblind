@@ -1,10 +1,10 @@
-![screen shot](https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png)
+<img src="https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png" alt="screen shot" style="display:block; margin-left:auto; margin-right:auto; width:399px; height:258px;">
 
 uncolorblind app
 ================
 
-Just a little app especially designed for people, like me, who are color blind.  It has a lot of the same
-functionality as [DigitalColor Meter](http://en.wikipedia.org/wiki/DigitalColor_Meter) on OS X.  With one twist.
+This is a little app especially designed for people, like me, who are color blind.  It has a lot of the same
+functionality as [DigitalColor Meter](http://en.wikipedia.org/wiki/DigitalColor_Meter) on OS X…with one twist.
 It will tell you the *name* of the color along with the RGB values. Given the RGB values of the pixel under the
 mouse pointer, it does a simple regression to find the closest match to the
 [X11 color names](http://en.wikipedia.org/wiki/Web_colors).  And it gives both the X11 color name and the "group name"
