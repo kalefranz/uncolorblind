@@ -1,4 +1,4 @@
-<img src="https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png" alt="screen shot" style="display:block; margin-left:auto; margin-right:auto; width:399px; height:258px;" width="399" height="258">
+<p align="center"><img src="https://raw.github.com/kalefranz/uncolorblind/master/aux/screenshot.png" alt="screen shot" width="399" height="258"></p>
 
 uncolorblind app
 ================
